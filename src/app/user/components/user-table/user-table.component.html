@@ -1,0 +1,21 @@
+<div class="container">
+    <table>
+        <caption>Usuários</caption>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Permissões</th>
+            </tr>
+            <tr *ngFor="let user of users" >
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.roles}}</td>
+                <button>
+                    <img src="../../../../../assets/icons/editar.png" alt="" />
+                </button>
+                <button>
+                    <img src="../../../../../assets/icons/excluir.png" alt="" />
+                </button>
+            </tr>
+    </table>
+</div>

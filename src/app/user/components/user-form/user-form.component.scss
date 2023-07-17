@@ -1,0 +1,64 @@
+.container {
+    background-color: whitesmoke;
+    margin: 0 auto;
+    width: 1000px;
+    height: 400px;
+    border-radius: 20px;
+}
+
+caption {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: darkgray;
+    font-size: 25px;
+    width: 100%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    width: 100%;
+    padding: 20px;
+}
+
+label {
+    font-size: 18px;
+    width: 100px;
+    margin-right: 10px;
+}
+
+input {
+    padding: 10px;
+    width: 800px;
+    border: none;
+    border-bottom: 1px dashed lightgray;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 30px;
+    background-color: whitesmoke;
+}
+
+.save-button {
+    border: none;
+    background-color: blue;
+    color: white; 
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.save-button:hover {
+    background-color: darkblue;
+}
+
+button {
+    border: none;
+    background-color: whitesmoke;
+    img {
+        width: 25px;
+        height: 25px;
+    }
+}
+
