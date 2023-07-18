@@ -8,16 +8,24 @@ import { User } from '../../models/user';
   styleUrls: ['./user-table.component.scss'],
 })
 export class UserTableComponent implements OnInit {
-  public users: User[] = [];
+  public users!: User[];
 
   constructor(private service: UserService) {}
 
   ngOnInit(): void {
-    this.service.usersSubject.subscribe(users => {
-      this.users = users; 
+    this.service.listAll().subscribe((users) => {
+      this.users = users;
     });
-    this.service.listAll().subscribe(users => {
-      this.service.usersSubject.next(users); 
-    });
+  }
+
+  public editUser(user:User){
+    let newUser = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      password: user.password,
+      roles: user.roles
+    }
+    this.service.selectUser(newUser);
   }
 }

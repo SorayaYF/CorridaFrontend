@@ -1,6 +1,6 @@
 <div class="container">
     <table>
-        <caption>Usuários</caption>
+        <caption>Usuários Listagem</caption>
             <tr>
                 <th>Nome</th>
                 <th>Email</th>
@@ -10,7 +10,7 @@
                 <td>{{user.name}}</td>
                 <td>{{user.email}}</td>
                 <td>{{user.roles}}</td>
-                <button>
+                <button (click)="editUser(user)">
                     <img src="../../../../../assets/icons/editar.png" alt="" />
                 </button>
                 <button>
