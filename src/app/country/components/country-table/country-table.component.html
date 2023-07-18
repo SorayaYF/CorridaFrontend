@@ -1,0 +1,20 @@
+<h2>Listagem de Países</h2>
+<table>
+  <thead>
+    <tr>
+      <th>País</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let country of countrys">
+      <td>{{country.name}}</td>
+      <button class="edit-delete-button" (click)="editCountry(country)">
+        <img src="../../../../../assets/icons/editar.png" alt="" />
+      </button>
+      <button class="edit-delete-button" (click)="deleteCountry(country)">
+        <img src="../../../../../assets/icons/excluir.png" alt="" />
+      </button>
+    </tr>
+  </tbody>
+</table>

@@ -21,10 +21,7 @@
             color: $primary-text-color;
         }
 
-        input[type="text"],
-        [type="email"],
-        [type="password"],
-        [type="text"] {
+        input[type="text"] {
             width: 90%;
             padding: 10px;
             border: none;

@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { HomeModule } from './home/home.module';
 import { MenuModule } from './menu/menu.module';
 import { UserModule } from './user/user.module';
+import { CountryModule } from './country/country.module';
+import { SpeedwayModule } from './speedway/speedway.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +21,8 @@ import { UserModule } from './user/user.module';
     HomeModule,
     MenuModule,
     UserModule,
+    CountryModule,
+    SpeedwayModule
   ],
   providers: [],
   bootstrap: [AppComponent],

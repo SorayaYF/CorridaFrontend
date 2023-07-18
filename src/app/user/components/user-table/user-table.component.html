@@ -1,21 +1,24 @@
-<div class="container">
-    <table>
-        <caption>Usuários Listagem</caption>
-            <tr>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Permissões</th>
-            </tr>
-            <tr *ngFor="let user of users" >
-                <td>{{user.name}}</td>
-                <td>{{user.email}}</td>
-                <td>{{user.roles}}</td>
-                <button (click)="editUser(user)">
-                    <img src="../../../../../assets/icons/editar.png" alt="" />
-                </button>
-                <button>
-                    <img src="../../../../../assets/icons/excluir.png" alt="" />
-                </button>
-            </tr>
-    </table>
-</div>
+<h2>Listagem de Usuários</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Usuário</th>
+      <th>Email</th>
+      <th>Permissões</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{user.name}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.roles}}</td>
+      <button class="edit-delete-button" (click)="editUser(user)">
+        <img src="../../../../../assets/icons/editar.png" alt="" />
+      </button>
+      <button class="edit-delete-button" (click)="deleteUser(user)">
+        <img src="../../../../../assets/icons/excluir.png" alt="" />
+      </button>
+    </tr>
+  </tbody>
+</table>

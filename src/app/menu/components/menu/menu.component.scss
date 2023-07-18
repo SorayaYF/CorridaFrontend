@@ -1,13 +1,16 @@
-.users-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: red;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-  }
-  
-  .users-button:hover {
-    background-color: darkred;
-  }
-  
+@import '../../../../dist/SCSS/variables.scss';
+
+.link-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: $tertiary-background-color;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.link-button:hover {
+  background-color: $click-color;
+}
+

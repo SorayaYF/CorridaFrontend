@@ -1,22 +1,21 @@
 <div class="container">
+  <h2>Cadastro de Usuários</h2>
   <form>
-    <caption>Usuários Cadastro</caption>
-    <div>
-      <label for="name">Nome</label>
-      <input type="text" id="name" name="name" [(ngModel)]="user.name"/>
-      <button type="button" (click)="getUsersByName()"><img src="../../../../../assets/icons/filtro.png" alt=""></button>
+    <div class="form-group">
+      <label for="name">Nome:</label>
+      <input type="text" id="name" name="name" [(ngModel)]="user.name">
+      <button class="filter-button" type="button" (click)="getUsersByName()"><img
+          src="../../../../../assets/icons/filtro.png" alt=""></button>
     </div>
-    <div>
+    <div class="form-group">
       <label for="email">Email</label>
       <input type="email" id="email" name="email" [(ngModel)]="user.email">
     </div>
-
-    <div>
+    <div class="form-group">
       <label for="password">Senha</label>
       <input type="password" id="password" name="password" [(ngModel)]="user.password">
     </div>
-
-    <div>
+    <div class="form-group">
       <label>Permissões</label>
       <div>
         <label for="admin">
@@ -27,7 +26,6 @@
         </label>
       </div>
     </div>
-
-    <button type="submit" class="save-button">Salvar</button>
+    <button class="save-button" type="submit" (click)='saveUser()'>Salvar</button>
   </form>
 </div>

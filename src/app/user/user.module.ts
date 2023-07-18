@@ -5,20 +5,9 @@ import { UserFormComponent } from './components/user-form/user-form.component';
 import { UserTableComponent } from './components/user-table/user-table.component';
 import { FormsModule } from '@angular/forms';
 
-
-
 @NgModule({
-  declarations: [
-    UserComponent,
-    UserFormComponent,
-    UserTableComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule
-  ],
-  exports: [
-    UserComponent
-  ]
+  declarations: [UserComponent, UserFormComponent, UserTableComponent],
+  imports: [CommonModule, FormsModule],
+  exports: [UserComponent],
 })
-export class UserModule { }
+export class UserModule {}

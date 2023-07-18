@@ -18,14 +18,22 @@ export class UserTableComponent implements OnInit {
     });
   }
 
-  public editUser(user:User){
+  public editUser(user: User) {
     let newUser = {
       id: user.id,
       name: user.name,
       email: user.email,
       password: user.password,
-      roles: user.roles
-    }
+      roles: user.roles,
+    };
     this.service.selectUser(newUser);
+  }
+
+  public deleteUser(user: User) {
+    this.service.delete(user).subscribe(() => {
+      this.service.listAll().subscribe((data) => {
+        this.users = data;
+      });
+    });
   }
 }
