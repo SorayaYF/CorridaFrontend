@@ -1,1 +1,24 @@
-<p>speedway-table works!</p>
+<h2>Listagem de Pistas</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Pista</th>
+            <th>Tamanho</th>
+            <th>País</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let speedway of speedways">
+            <td>{{speedway.name}}</td>
+            <td>{{speedway.size}}</td>
+            <td>{{speedway.country.name}}</td>
+            <button class="edit-delete-button" (click)="editSpeedway(speedway)">
+                <img src="../../../../../assets/icons/editar.png" alt="" />
+            </button>
+            <button class="edit-delete-button" (click)="deleteSpeedway(speedway)">
+                <img src="../../../../../assets/icons/excluir.png" alt="" />
+            </button>
+        </tr>
+    </tbody>
+</table>

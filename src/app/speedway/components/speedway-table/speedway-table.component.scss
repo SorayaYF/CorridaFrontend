@@ -1,0 +1,41 @@
+@import '../../../../dist/SCSS/variables.scss';
+
+h2 {
+    color: $primary-text-color;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: $secondary-background-color;
+
+    tr:nth-child(even) {
+        background-color: #F2F2F2;
+
+    }
+
+    th,
+    td {
+        padding: 10px;
+        text-align: left;
+    }
+
+    th {
+        background-color: $secondary-color;
+        color: $secondary-text-color;
+    }
+
+    tr:hover {
+        background-color: #E6E6E6;
+    }
+
+    .edit-delete-button {
+        border: none;
+        background-color: rgba(245, 245, 245, 0);
+
+        img {
+            width: 25px;
+            height: 25px;
+        }
+    }
+}

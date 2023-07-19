@@ -1,12 +1,43 @@
 <div class="container">
-    <h2>Cadastro de Pistas</h2>
-    <form>
-      <div class="form-group">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" [(ngModel)]="speedway.name">
-        <button class="filter-button" type="button" (click)="getSpeedwaysByName()"><img
-            src="../../../../../assets/icons/filtro.png" alt=""></button>
-      </div>
-      <button class="save-button" type="submit" (click)='saveSpeedway()'>Salvar</button>
-    </form>
-  </div>
+  <h2>Cadastro de Pistas</h2>
+  <form>
+    <div class="form-group">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" [(ngModel)]="speedway.name">
+      <button class="filter-button" type="button" (click)="getSpeedwaysByName()"><img
+          src="../../../../../assets/icons/filtro.png" alt=""></button>
+    </div>
+    <div class="form-group">
+      <label for="tamanho">Tamanho:</label>
+      <input type="number" id="tamanho" name="tamanho" [(ngModel)]="speedway.size">
+      <button class="filterSize-button" type="button" (click)="showSizeContainer()">Filtrar por Tamanho</button>
+    </div>
+    <div class="form-group" *ngIf="showSizeFilters">
+      <label for="sizeIn">Tamanho inicial:</label>
+      <input type="number" id="sizeIn" name="sizeIn" [(ngModel)]="sizeIn">
+      <label for="sizeFin">Tamanho final:</label>
+      <input type="number" id="sizeFin" name="sizeFin" [(ngModel)]="sizeFin">
+      <button class="filterSize-button" type="button" (click)="filterBySize()">Filtrar</button>
+    </div>
+    <div class="form-group">
+      <label for="pais">País:</label>
+      <select name="pais" [(ngModel)]="speedway.country">
+        <option *ngFor="let country of countrys" [ngValue]="country">{{ country.name }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <button class="filterSize-button" type="button" (click)="showCountryContainer()">Filtrar por País</button>
+    </div>
+    <br>
+    <div class="form-group" *ngIf="showCountryFilters">
+      <label for="selectedCountry">País Selecionado:</label>
+      <select name="selectedCountry" [(ngModel)]="selectedCountry">
+        <option value="">Todos</option>
+        <option *ngFor="let country of countrys" [ngValue]="country">{{ country.name }}</option>
+      </select>
+      <button class="filterSize-button" type="button" (click)="getSpeedwaysByCountry()">Filtrar</button>
+    </div>
+    <br>
+    <button class="save-button" type="submit" (click)='saveSpeedway()'>Salvar</button>
+  </form>
+</div>

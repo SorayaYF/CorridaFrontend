@@ -21,8 +21,16 @@
             color: $primary-text-color;
         }
 
-        input[type="text"] {
+        input[type="text"],
+        [type="number"] {
             width: 90%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+        }
+
+        select {
+            width: 93%;
             padding: 10px;
             border: none;
             border-radius: 4px;
@@ -36,6 +44,21 @@
                 width: 25px;
                 height: 25px;
             }
+        }
+
+        .filterSize-button {
+            margin-top: 15px;
+            margin-bottom: 15px;
+            padding: 10px 20px;
+            background-color: $tertiary-background-color;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .filterSize-button:hover {
+            background-color: $click-color;
         }
     }
 

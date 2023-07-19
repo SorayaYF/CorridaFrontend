@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './components/home/home.component';
+import { LoginModule } from '../login/login.module';
 
 
 
@@ -9,7 +10,8 @@ import { HomeComponent } from './components/home/home.component';
     HomeComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    LoginModule
   ],
   exports: [
     HomeComponent

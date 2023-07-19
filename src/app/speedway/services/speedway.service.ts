@@ -10,7 +10,7 @@ export class SpeedwayService {
   constructor(private http: HttpClient) {}
 
   private urlBase: string = 'http://localhost:8080/speedways';
-  public countrysSubject = new Subject<Speedway[]>();
+  public speedwaysSubject = new Subject<Speedway[]>();
   public selectSpeedwayEvent = new EventEmitter();
 
   private httpOptions = {
@@ -20,16 +20,32 @@ export class SpeedwayService {
   public listAll(): Observable<Speedway[]> {
     this.http
       .get<Speedway[]>(this.urlBase)
-      .subscribe((speedways) => this.countrysSubject.next(speedways));
-    return this.countrysSubject.asObservable();
+      .subscribe((speedways) => this.speedwaysSubject.next(speedways));
+    return this.speedwaysSubject.asObservable();
   }
 
   public getSpeedwaysByName(name: string): Observable<Speedway[]> {
     let url = `${this.urlBase}/name/${name}`;
     this.http
       .get<Speedway[]>(url)
-      .subscribe((speedways) => this.countrysSubject.next(speedways));
-    return this.countrysSubject.asObservable();
+      .subscribe((speedways) => this.speedwaysSubject.next(speedways));
+    return this.speedwaysSubject.asObservable();
+  }
+
+  public getSpeedwaysBySize(sizeIn: number, sizeFin: number): Observable<Speedway[]> {
+    let url = `${this.urlBase}/size/${sizeIn}/${sizeFin}`;
+    this.http
+      .get<Speedway[]>(url)
+      .subscribe((speedways) => this.speedwaysSubject.next(speedways));
+    return this.speedwaysSubject.asObservable();
+  }
+
+  public getSpeedwaysByCountry(id: number): Observable<Speedway[]> {
+    let url = `${this.urlBase}/country/${id}`;
+    this.http
+      .get<Speedway[]>(url)
+      .subscribe((speedways) => this.speedwaysSubject.next(speedways));
+    return this.speedwaysSubject.asObservable();
   }
 
   public selectSpeedway(speedway: Speedway) {
