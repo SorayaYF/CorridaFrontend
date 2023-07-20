@@ -14,11 +14,9 @@ export class UserTableComponent implements OnInit {
   constructor(private service: UserService, private globalService: GlobalService) {}
 
   ngOnInit(): void {
-    this.globalService.getToken('email1','senha1').subscribe(()=>{
       this.service.listAll().subscribe((data) => {
         this.users = data;
       });
-    });
   }
 
   public editUser(user: User) {

@@ -15,37 +15,54 @@ export class UserService {
   public selectUserEvent = new EventEmitter();
 
   private httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: this.globalService.token,
+    }),
   };
 
   public listAll(): Observable<User[]> {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': this.globalService.token
+        Authorization: this.globalService.token,
       }),
     };
-    this.http.get<User[]>(this.urlBase, httpOptions)
-      .subscribe((users) => {
-        this.usersSubject.next(users)
-      });
+    this.http.get<User[]>(this.urlBase, httpOptions).subscribe((users) => {
+      this.usersSubject.next(users);
+    });
     return this.usersSubject.asObservable();
   }
 
   public getUsersByName(name: string): Observable<User[]> {
-    let url = `${this.urlBase}/name/${name}`;
-    this.http
-      .get<User[]>(url)
-      .subscribe((users) => this.usersSubject.next(users));
-    return this.usersSubject.asObservable();
+    if (name === '') {
+      return this.listAll();
+    } else {
+      let httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.globalService.token,
+        }),
+      };
+      let url = `${this.urlBase}/name/${name}`;
+      this.http
+        .get<User[]>(url, httpOptions)
+        .subscribe((users) => this.usersSubject.next(users));
+      return this.usersSubject.asObservable();
+    }
   }
-
   public selectUser(user: User) {
     this.selectUserEvent.emit(user);
   }
 
   public insert(user: User): Observable<User> {
-    return this.http.post<User>(this.urlBase, user, this.httpOptions).pipe(
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.globalService.token,
+      }),
+    };
+    return this.http.post<User>(this.urlBase, user, httpOptions).pipe(
       tap(() => {
         this.listAll();
       })
@@ -53,8 +70,14 @@ export class UserService {
   }
 
   public update(user: User): Observable<User> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.globalService.token,
+      }),
+    };
     return this.http
-      .put<User>(`${this.urlBase}/${user.id}`, user, this.httpOptions)
+      .put<User>(`${this.urlBase}/${user.id}`, user, httpOptions)
       .pipe(
         tap(() => {
           this.listAll();
@@ -63,6 +86,12 @@ export class UserService {
   }
 
   public delete(user: User): Observable<void> {
-    return this.http.delete<void>(`${this.urlBase}/${user.id}`);
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.globalService.token,
+      }),
+    };
+    return this.http.delete<void>(`${this.urlBase}/${user.id}`, httpOptions);
   }
 }

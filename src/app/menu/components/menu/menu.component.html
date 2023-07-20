@@ -1,3 +1,5 @@
-<a class="link-button" routerLink="/users" *ngIf="authService.isLoggedIn">Usuários</a>
-<a class="link-button" routerLink="/countrys" *ngIf="authService.isLoggedIn">Paises</a>
-<a class="link-button" routerLink="/speedways" *ngIf="authService.isLoggedIn">Pistas</a>
+<div *ngIf="isAuthenticated">
+    <a class="link-button" routerLink="/users">Usuários</a>
+    <a class="link-button" routerLink="/countrys">Paises</a>
+    <a class="link-button" routerLink="/speedways">Pistas</a>
+</div>
