@@ -1,0 +1,20 @@
+<h2>Listagem de Equipes</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Equipes</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let team of teams">
+      <td>{{team.name}}</td>
+      <button class="edit-delete-button" (click)="editTeam(team)">
+        <img src="../../../../../assets/icons/editar.png" alt="" />
+      </button>
+      <button class="edit-delete-button" (click)="deleteTeam(team)">
+        <img src="../../../../../assets/icons/excluir.png" alt="" />
+      </button>
+    </tr>
+  </tbody>
+</table>

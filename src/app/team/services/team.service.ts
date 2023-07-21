@@ -1,24 +1,24 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
-import { Country } from '../models/country';
 import { GlobalService } from 'src/app/global.service';
+import { Team } from '../models/team';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class CountryService {
+export class TeamService {
   constructor(private http: HttpClient, private globalService: GlobalService) { }
 
-  private urlBase: string = 'http://localhost:8080/countrys';
-  public countrysSubject = new Subject<Country[]>();
-  public selectCountryEvent = new EventEmitter();
+  private urlBase: string = 'http://localhost:8080/teams';
+  public teamsSubject = new Subject<Team[]>();
+  public selectTeamEvent = new EventEmitter();
 
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json', Authorization: this.globalService.token, }),
   };
 
-  public listAll(): Observable<Country[]> {
+  public listAll(): Observable<Team[]> {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -26,12 +26,12 @@ export class CountryService {
       }),
     };
     this.http
-      .get<Country[]>(this.urlBase, httpOptions)
-      .subscribe((countrys) => this.countrysSubject.next(countrys));
-    return this.countrysSubject.asObservable();
+      .get<Team[]>(this.urlBase, httpOptions)
+      .subscribe((teams) => this.teamsSubject.next(teams));
+    return this.teamsSubject.asObservable();
   }
 
-  public getCountrysByName(name: string): Observable<Country[]> {
+  public getTeamsByName(name: string): Observable<Team[]> {
     if (name === '') {
       return this.listAll();
     } else {
@@ -43,17 +43,17 @@ export class CountryService {
       };
       let url = `${this.urlBase}/name/${name}`;
       this.http
-        .get<Country[]>(url, httpOptions)
-        .subscribe((countrys) => this.countrysSubject.next(countrys));
-      return this.countrysSubject.asObservable();
+        .get<Team[]>(url, httpOptions)
+        .subscribe((teams) => this.teamsSubject.next(teams));
+      return this.teamsSubject.asObservable();
     }
   }
 
-  public selectCountry(country: Country) {
-    this.selectCountryEvent.emit(country);
+  public selectTeam(team: Team) {
+    this.selectTeamEvent.emit(team);
   }
 
-  public insert(country: Country): Observable<Country> {
+  public insert(team: Team): Observable<Team> {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ export class CountryService {
       }),
     };
     return this.http
-      .post<Country>(this.urlBase, country, httpOptions)
+      .post<Team>(this.urlBase, team, httpOptions)
       .pipe(
         tap(() => {
           this.listAll();
@@ -69,7 +69,7 @@ export class CountryService {
       );
   }
 
-  public update(country: Country): Observable<Country> {
+  public update(team: Team): Observable<Team> {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ export class CountryService {
       }),
     };
     return this.http
-      .put<Country>(`${this.urlBase}/${country.id}`, country, httpOptions)
+      .put<Team>(`${this.urlBase}/${team.id}`, team, httpOptions)
       .pipe(
         tap(() => {
           this.listAll();
@@ -85,13 +85,13 @@ export class CountryService {
       );
   }
 
-  public delete(country: Country): Observable<void> {
+  public delete(team: Team): Observable<void> {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: this.globalService.token,
       }),
     };
-    return this.http.delete<void>(`${this.urlBase}/${country.id}`, httpOptions);
+    return this.http.delete<void>(`${this.urlBase}/${team.id}`, httpOptions);
   }
 }

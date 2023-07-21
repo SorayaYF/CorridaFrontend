@@ -8,7 +8,7 @@ import { GlobalService } from 'src/app/global.service';
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private http: HttpClient, private globalService: GlobalService) {}
+  constructor(private http: HttpClient, private globalService: GlobalService) { }
 
   private urlBase: string = 'http://localhost:8080/users';
   public usersSubject = new Subject<User[]>();

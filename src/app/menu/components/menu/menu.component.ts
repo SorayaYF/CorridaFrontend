@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { GlobalService } from 'src/app/global.service';
 
 @Component({
   selector: 'app-menu',
@@ -9,9 +9,9 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class MenuComponent {
   public isAuthenticated = false;
 
-  constructor(private authService: AuthenticationService) {}
+  constructor(private globalService: GlobalService) {}
 
   Authenticated(): boolean {
-    return this.isAuthenticated = this.authService.isAuthenticatedUser();
+    return this.isAuthenticated = this.globalService.isAuthenticatedUser();
   }
 }

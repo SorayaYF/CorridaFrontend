@@ -6,6 +6,7 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class GlobalService {
+  private isAuthenticated = false;
   
   constructor(private http: HttpClient) { }
 
@@ -26,5 +27,13 @@ export class GlobalService {
         this.token += data;
       })
     )
+  }
+
+  setAuthenticated(value: boolean) {
+    this.isAuthenticated = value;
+  }
+
+  isAuthenticatedUser(): boolean {
+    return this.isAuthenticated;
   }
 }

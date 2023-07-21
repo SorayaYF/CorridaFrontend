@@ -2,34 +2,51 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
 import { Speedway } from '../models/speedway';
+import { GlobalService } from 'src/app/global.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SpeedwayService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private globalService: GlobalService) { }
 
   private urlBase: string = 'http://localhost:8080/speedways';
   public speedwaysSubject = new Subject<Speedway[]>();
   public selectSpeedwayEvent = new EventEmitter();
 
   private httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', Authorization: this.globalService.token, }),
   };
 
   public listAll(): Observable<Speedway[]> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.globalService.token,
+      }),
+    };
     this.http
-      .get<Speedway[]>(this.urlBase)
+      .get<Speedway[]>(this.urlBase, httpOptions)
       .subscribe((speedways) => this.speedwaysSubject.next(speedways));
     return this.speedwaysSubject.asObservable();
   }
 
   public getSpeedwaysByName(name: string): Observable<Speedway[]> {
-    let url = `${this.urlBase}/name/${name}`;
-    this.http
-      .get<Speedway[]>(url)
-      .subscribe((speedways) => this.speedwaysSubject.next(speedways));
-    return this.speedwaysSubject.asObservable();
+    if (name === '') {
+      return this.listAll();
+    } else {
+      let httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.globalService.token,
+        }),
+      };
+      let url = `${this.urlBase}/name/${name}`;
+      this.http
+        .get<Speedway[]>(url, httpOptions)
+        .subscribe((speedways) => this.speedwaysSubject.next(speedways));
+      return this.speedwaysSubject.asObservable();
+    }
   }
 
   public getSpeedwaysBySize(sizeIn: number, sizeFin: number): Observable<Speedway[]> {
@@ -53,8 +70,14 @@ export class SpeedwayService {
   }
 
   public insert(speedway: Speedway): Observable<Speedway> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.globalService.token,
+      }),
+    };
     return this.http
-      .post<Speedway>(this.urlBase, speedway, this.httpOptions)
+      .post<Speedway>(this.urlBase, speedway, httpOptions)
       .pipe(
         tap(() => {
           this.listAll();
@@ -63,8 +86,14 @@ export class SpeedwayService {
   }
 
   public update(speedway: Speedway): Observable<Speedway> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.globalService.token,
+      }),
+    };
     return this.http
-      .put<Speedway>(`${this.urlBase}/${speedway.id}`, speedway, this.httpOptions)
+      .put<Speedway>(`${this.urlBase}/${speedway.id}`, speedway, httpOptions)
       .pipe(
         tap(() => {
           this.listAll();
@@ -73,6 +102,12 @@ export class SpeedwayService {
   }
 
   public delete(speedway: Speedway): Observable<void> {
-    return this.http.delete<void>(`${this.urlBase}/${speedway.id}`);
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.globalService.token,
+      }),
+    };
+    return this.http.delete<void>(`${this.urlBase}/${speedway.id}`, httpOptions);
   }
 }
