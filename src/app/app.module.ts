@@ -12,6 +12,8 @@ import { CountryModule } from './country/country.module';
 import { SpeedwayModule } from './speedway/speedway.module';
 import { LoginModule } from './login/login.module';
 import { TeamModule } from './team/team.module';
+import { PilotModule } from './pilot/pilot.module';
+import { ChampionshipModule } from './championship/championship.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +28,9 @@ import { TeamModule } from './team/team.module';
     CountryModule,
     SpeedwayModule,
     LoginModule,
-    TeamModule
+    TeamModule,
+    PilotModule,
+    ChampionshipModule
   ],
   providers: [],
   bootstrap: [AppComponent],

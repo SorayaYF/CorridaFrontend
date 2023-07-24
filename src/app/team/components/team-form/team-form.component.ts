@@ -5,7 +5,7 @@ import { TeamService } from '../../services/team.service';
 @Component({
   selector: 'app-team-form',
   templateUrl: './team-form.component.html',
-  styleUrls: ['./team-form.component.scss']
+  styleUrls: ['./team-form.component.scss'],
 })
 export class TeamFormComponent implements OnInit {
   public teams!: Team[];
@@ -36,5 +36,4 @@ export class TeamFormComponent implements OnInit {
       });
     }
   }
-
 }

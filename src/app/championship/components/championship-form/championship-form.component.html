@@ -1,0 +1,46 @@
+<div class="container">
+    <h2>Cadastro de Campeonatos</h2>
+    <form>
+      <div class="form-group">
+        <label for="descricao">Descrição:</label>
+        <input type="text" id="descricao" name="descricao" [(ngModel)]="championship.description" />
+        <button
+          class="filter-button"
+          type="button"
+          (click)="getChampionshipsByDescription()"
+        >
+          <img src="../../../../../assets/icons/filtro.png" alt="" />
+        </button>
+      </div>
+      <div class="form-group">
+        <label for="ano">Ano:</label>
+        <input
+          type="number"
+          id="ano"
+          name="ano"
+          [(ngModel)]="championship.year"
+        />
+        <button
+          class="filterYear-button"
+          type="button"
+          (click)="showYearContainer()"
+        >
+          Filtrar por Ano
+        </button>
+      </div>
+      <div class="form-group" *ngIf="showYearFilters">
+        <label for="yearIn">Ano inicial:</label>
+        <input type="number" id="yearIn" name="yearIn" [(ngModel)]="yearIn" />
+        <label for="yearFin">Ano final:</label>
+        <input type="number" id="yearFin" name="yearFin" [(ngModel)]="yearFin" />
+        <button class="filterYear-button" type="button" (click)="filterByYear()">
+          Filtrar
+        </button>
+      </div>
+      <br />
+      <button class="save-button" type="submit" (click)="saveChampionship()">
+        Salvar
+      </button>
+    </form>
+  </div>
+  

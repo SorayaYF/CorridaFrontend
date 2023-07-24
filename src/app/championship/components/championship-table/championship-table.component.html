@@ -1,0 +1,22 @@
+<h2>Listagem de Campeonatos</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Descrição</th>
+      <th>Ano</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let championship of championships">
+      <td>{{ championship.description }}</td>
+      <td>{{ championship.year }}</td>
+      <button class="edit-delete-button" (click)="editChampionship(championship)">
+        <img src="../../../../../assets/icons/editar.png" alt="" />
+      </button>
+      <button class="edit-delete-button" (click)="deleteChampionship(championship)">
+        <img src="../../../../../assets/icons/excluir.png" alt="" />
+      </button>
+    </tr>
+  </tbody>
+</table>

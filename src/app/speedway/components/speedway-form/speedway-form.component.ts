@@ -7,7 +7,7 @@ import { Country } from 'src/app/country/models/country';
 @Component({
   selector: 'app-speedway-form',
   templateUrl: './speedway-form.component.html',
-  styleUrls: ['./speedway-form.component.scss']
+  styleUrls: ['./speedway-form.component.scss'],
 })
 export class SpeedwayFormComponent implements OnInit {
   public speedways!: Speedway[];
@@ -19,7 +19,10 @@ export class SpeedwayFormComponent implements OnInit {
   public sizeFin: number | undefined;
   public selectedCountry: Country | undefined;
 
-  constructor(private service: SpeedwayService, private countryService: CountryService) {}
+  constructor(
+    private service: SpeedwayService,
+    private countryService: CountryService
+  ) {}
 
   ngOnInit(): void {
     this.service.selectSpeedwayEvent.subscribe((data) => {
@@ -61,9 +64,11 @@ export class SpeedwayFormComponent implements OnInit {
 
   public getSpeedwaysByCountry() {
     if (this.selectedCountry !== undefined) {
-      this.service.getSpeedwaysByCountry(this.selectedCountry.id).subscribe((data) => {
-        this.speedways = data;
-      });
+      this.service
+        .getSpeedwaysByCountry(this.selectedCountry.id)
+        .subscribe((data) => {
+          this.speedways = data;
+        });
       this.showCountryFilters = false;
     }
   }
@@ -79,5 +84,4 @@ export class SpeedwayFormComponent implements OnInit {
       });
     }
   }
-
 }

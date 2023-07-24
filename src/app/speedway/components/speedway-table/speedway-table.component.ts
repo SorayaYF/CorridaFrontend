@@ -11,7 +11,10 @@ import { CountryService } from 'src/app/country/services/country.service';
 export class SpeedwayTableComponent implements OnInit {
   public speedways!: Speedway[];
 
-  constructor(private service: SpeedwayService, private countryService: CountryService) {}
+  constructor(
+    private service: SpeedwayService,
+    private countryService: CountryService
+  ) {}
 
   ngOnInit(): void {
     this.service.listAll().subscribe((speedways) => {

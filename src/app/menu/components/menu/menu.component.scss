@@ -1,5 +1,8 @@
-@import '../../../../dist/SCSS/variables.scss';
+@import "../../../../dist/SCSS/variables.scss";
 
+div {
+  display: inline-block;
+}
 .link-button {
   display: inline-block;
   padding: 10px 20px;
@@ -13,4 +16,3 @@
 .link-button:hover {
   background-color: $click-color;
 }
-

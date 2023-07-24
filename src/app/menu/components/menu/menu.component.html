@@ -1,7 +1,11 @@
-<div *ngIf="isAuthenticated">
+<div>
+  <a class="link-button" routerLink="/">Início</a>
+  <div *ngIf="showMenu">
     <a class="link-button" routerLink="/users">Usuários</a>
     <a class="link-button" routerLink="/countrys">Paises</a>
     <a class="link-button" routerLink="/speedways">Pistas</a>
     <a class="link-button" routerLink="/teams">Equipes</a>
     <a class="link-button" routerLink="/pilots">Pilotos</a>
+    <a class="link-button" routerLink="/championships">Campeonatos</a>
+  </div>
 </div>

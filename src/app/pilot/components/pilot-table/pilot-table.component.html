@@ -1,1 +1,24 @@
-<p>pilot-table works!</p>
+<h2>Listagem de Pilotos</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Piloto</th>
+      <th>País</th>
+      <th>Equipe</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pilot of pilots">
+      <td>{{ pilot.name }}</td>
+      <td>{{ pilot.country.name }}</td>
+      <td>{{ pilot.team.name }}</td>
+      <button class="edit-delete-button" (click)="editPilot(pilot)">
+        <img src="../../../../../assets/icons/editar.png" alt="" />
+      </button>
+      <button class="edit-delete-button" (click)="deletePilot(pilot)">
+        <img src="../../../../../assets/icons/excluir.png" alt="" />
+      </button>
+    </tr>
+  </tbody>
+</table>

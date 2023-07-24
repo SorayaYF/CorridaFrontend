@@ -1,7 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { SpeedwayService } from '../../services/speedway.service';
-import { Speedway } from '../../models/speedway';
-
+import { Component } from '@angular/core';
 @Component({
   selector: 'app-speedway',
   templateUrl: './speedway.component.html',

@@ -3,10 +3,13 @@
   <form>
     <div class="form-group">
       <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" [(ngModel)]="country.name">
-      <button class="filter-button" type="button" (click)="getCountrysByName()"><img
-          src="../../../../../assets/icons/filtro.png" alt=""></button>
+      <input type="text" id="nome" name="nome" [(ngModel)]="country.name" />
+      <button class="filter-button" type="button" (click)="getCountrysByName()">
+        <img src="../../../../../assets/icons/filtro.png" alt="" />
+      </button>
     </div>
-    <button class="save-button" type="submit" (click)='saveCountry()'>Salvar</button>
+    <button class="save-button" type="submit" (click)="saveCountry()">
+      Salvar
+    </button>
   </form>
 </div>

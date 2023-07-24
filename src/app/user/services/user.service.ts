@@ -2,13 +2,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { Observable, Subject, tap } from 'rxjs';
-import { GlobalService } from 'src/app/global.service';
+import { LoginService } from 'src/app/login/services/login.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private http: HttpClient, private globalService: GlobalService) { }
+  constructor(private http: HttpClient, private loginService: LoginService) {}
 
   private urlBase: string = 'http://localhost:8080/users';
   public usersSubject = new Subject<User[]>();
@@ -17,7 +17,7 @@ export class UserService {
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: this.globalService.token,
+      Authorization: this.loginService.token,
     }),
   };
 
@@ -25,7 +25,7 @@ export class UserService {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: this.globalService.token,
+        Authorization: this.loginService.token,
       }),
     };
     this.http.get<User[]>(this.urlBase, httpOptions).subscribe((users) => {
@@ -41,7 +41,7 @@ export class UserService {
       let httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          Authorization: this.globalService.token,
+          Authorization: this.loginService.token,
         }),
       };
       let url = `${this.urlBase}/name/${name}`;
@@ -59,7 +59,7 @@ export class UserService {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: this.globalService.token,
+        Authorization: this.loginService.token,
       }),
     };
     return this.http.post<User>(this.urlBase, user, httpOptions).pipe(
@@ -73,7 +73,7 @@ export class UserService {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: this.globalService.token,
+        Authorization: this.loginService.token,
       }),
     };
     return this.http
@@ -89,7 +89,7 @@ export class UserService {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: this.globalService.token,
+        Authorization: this.loginService.token,
       }),
     };
     return this.http.delete<void>(`${this.urlBase}/${user.id}`, httpOptions);

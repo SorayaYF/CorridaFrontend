@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
-import { GlobalService } from 'src/app/global.service';
 
 @Component({
   selector: 'app-user-table',
@@ -11,12 +10,12 @@ import { GlobalService } from 'src/app/global.service';
 export class UserTableComponent implements OnInit {
   public users!: User[];
 
-  constructor(private service: UserService, private globalService: GlobalService) {}
+  constructor(private service: UserService) {}
 
   ngOnInit(): void {
-      this.service.listAll().subscribe((data) => {
-        this.users = data;
-      });
+    this.service.listAll().subscribe((data) => {
+      this.users = data;
+    });
   }
 
   public editUser(user: User) {

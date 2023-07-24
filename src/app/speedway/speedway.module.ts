@@ -4,7 +4,6 @@ import { SpeedwayComponent } from './components/speedway/speedway.component';
 import { SpeedwayFormComponent } from './components/speedway-form/speedway-form.component';
 import { SpeedwayTableComponent } from './components/speedway-table/speedway-table.component';
 import { FormsModule } from '@angular/forms';
-import { CountryService } from '../country/services/country.service';
 
 @NgModule({
   declarations: [

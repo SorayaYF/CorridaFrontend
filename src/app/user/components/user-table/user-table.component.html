@@ -10,9 +10,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let user of users">
-      <td>{{user.name}}</td>
-      <td>{{user.email}}</td>
-      <td>{{user.roles}}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.roles }}</td>
       <button class="edit-delete-button" (click)="editUser(user)">
         <img src="../../../../../assets/icons/editar.png" alt="" />
       </button>
